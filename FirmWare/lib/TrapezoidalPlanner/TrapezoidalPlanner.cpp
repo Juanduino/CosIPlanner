@@ -461,8 +461,7 @@ bool TrapezoidalPlanner::calculateTrapezoidalPathParameters(float Xf, float Xi, 
   
 
     #ifdef __debug
-        Serial.print("dX_decel_start_: ");
-        Serial.println(dX_decel_start_);
+      
         Serial.println("--------------------------------- ");
         Serial.println(" Calculated trapezoidal Values:   ");
         Serial.println("     Tf: " + String(Tf_));
@@ -507,7 +506,7 @@ void TrapezoidalPlanner::startExecutionOfPlannerTo(float newPos){
 
     // TODO: If we are being asked to move but are already in motion, we should go with the current velocity, position, and acceleration
     // and keep moving.
-    
+
     // Now we need to do our calcs before we start moving
     calculateTrapezoidalPathParameters(Xf_, Xi_, Vi_, Vmax_, Amax_, Dmax_);
     motor->target = Y_; // could possibly put this in the method above
@@ -557,8 +556,7 @@ void TrapezoidalPlanner::computeStepValuesForCurrentTime(float currentTrajectory
     //Yd_ = Vi_ + Ar_ * currentTrajectoryTime;
     //Ydd_ = Ar_;
 
-    // Update decel_start_pos
-    decel_start_pos = Y_;
+   
     
     #ifdef __debug
         Serial.print("desiredAmplitude: ");
