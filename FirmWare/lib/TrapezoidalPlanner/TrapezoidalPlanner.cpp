@@ -113,7 +113,7 @@ void TrapezoidalPlanner::doMCommand(char *MCommand){
         // Try calling the planner to use this new velocity value
         // We have to use the current pos, vel, and accel
         // calc_plan_trapezoidal_path_at_start(Xf_, Xi_, Vi_, Vmax_, Amax_, Dmax_);
-        calculateTrapezoidalPathParameters(Xf_, motor->shaft_angle, motor->shaft_velocity, Vmax_, Amax_, Dmax_);
+        //calculateTrapezoidalPathParameters(Xf_, motor->shaft_angle, motor->shaft_velocity, Vmax_, Amax_, Dmax_);
         #ifdef __debug
             Serial.print("User wants velocity change. Vmax_: ");
             Serial.println(Vmax_);
@@ -126,13 +126,15 @@ void TrapezoidalPlanner::doMCommand(char *MCommand){
                 // Set jerk
 
               // Remove M so can convert to a float
-      
-        commandValue2 = commandSrt.toFloat();
-        Amax_ = commandValue2;
-        Dmax_ = Amax_;
+
+        //TODO
+
+        //commandValue2 = commandSrt.toFloat();
+        //Amax_ = commandValue2;
+        //Dmax_ = Amax_;
         // Try calling the planner to use this new acceleration value
         // calc_plan_trapezoidal_path_at_start(Xf_, Xi_, Vi_, Vmax_, Amax_, Dmax_);
-        calculateTrapezoidalPathParameters(Xf_, motor->shaft_angle, motor->shaft_velocity, Vmax_, Amax_, Dmax_);
+        //calculateTrapezoidalPathParameters(Xf_, motor->shaft_angle, motor->shaft_velocity, Vmax_, Amax_, Dmax_);
         #ifdef __debug
             Serial.print("User wants acceleration change. Amax_: ");
             Serial.println(Amax_);
@@ -149,7 +151,9 @@ void TrapezoidalPlanner::doMCommand(char *MCommand){
                 commandSrt = commandSrt.substring(4);
                 commandValue2 = commandSrt.toFloat();
         
-                motor->shaft_angle = commandValue2;
+                motor->shaft_angle = commandValue2; 
+
+                // NOTE: Probably need to set position in a better mannor.
 
                 Serial.print("Homing to: ");
                 Serial.println(commandValue2);
